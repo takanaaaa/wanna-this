@@ -1,34 +1,45 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <h2 class="text-center">Sign up</h2>
+    </div>
   </div>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div class="row py-5">
+    <div class="col-md-6">
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+    <div class="col-md-6 form-group">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="col-8 offset-2">
+          <div class="field">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "\uf007 username", style: "border: none", class: "far form-control my-5 border-bottom text-center" %>
+          </div>
+        </div>
+        <div class="col-8 offset-2">
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "\uf0e0 email", style: "border: none", class: "far form-control my-5 border-bottom text-center" %>
+          </div>
+        </div>
+        <div class="col-8 offset-2">
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "passward", style: "border: none", class: "far form-control my-5 border-bottom text-center" %>
+          </div>
+        </div>
+        <div class="col-8 offset-2">
+          <div class="field">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "passward", style: "border: none", class: "far form-control my-5 border-bottom text-center" %>
+          </div>
+        </div>
+        <div class="col-8 offset-2 text-center pt-3">
+          <div class="actions">
+            <%= f.submit "Sign up", class: "btn btn-dark px-5" %>
+          </div>
+        </div>
+      <% end %>
+      <div class="col-8 offset-2 text-center pt-2">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
