@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :ensure_current_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -46,8 +47,8 @@ class PostsController < ApplicationController
   end
 
   def ensure_current_user
-    book = Book.find(params[:id])
-    unless book.user == current_user
+    post = Post.find(params[:id])
+    unless post.user == current_user
       redirect_to users_path
     end
   end
