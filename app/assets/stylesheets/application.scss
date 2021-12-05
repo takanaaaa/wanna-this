@@ -27,6 +27,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
+
 #text-hidden {
   overflow: hidden;
   display: -webkit-box;
@@ -34,7 +35,7 @@
   -webkit-line-clamp: 2;
 }
 
-.date {
+.date{
   position: absolute;
   right: 10px;
   bottom: 10px;
