@@ -21,9 +21,21 @@
   font-family: 'Oswald', sans-serif;
 }
 
+#title-hidden {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
 #text-hidden {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+.date {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }

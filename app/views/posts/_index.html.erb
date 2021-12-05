@@ -1,16 +1,18 @@
 <% posts.each do |post| %>
-  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 d-flex justify-content-center">
-    <div class="card mr-1 mb-3" style="width: 17rem;">
-      <%= attachment_image_tag post, :image, :fill, 300, 300, fallback: "nophoto_thumbnail.png", class: "bd-placeholder-img card-img-top" %>
+  <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 d-flex justify-content-center">
+    <div class="card mb-3" style="width: 25rem;">
+      <%= attachment_image_tag post, :image, :fill, 300, 300, fallback: "nophoto_thumbnail.png", class: "bd-placeholder-img p-2" %>
       <div class="card-body">
-        <h5 class="card-title", id="text-hidden"><%= post.title %></h5>
+        <h5 class="card-title", id="title-hidden"><%= post.title %></h5>
         <p class="card-text", id="text-hidden"><%= post.body %></p>
-        <%= link_to "Show This", post_path(post), class: "btn btn-info"%><br>
-        <%= link_to user_path(post.user), class: "text-dark" do %>
-          <%= attachment_image_tag post.user, :profile_image, fallback: "nophoto_thumbnail.png", size: "30x30" %>
-          <%= post.user.name %>
-        <% end %><br>
-        <%= post.created_at %>
+        <%= link_to "Show This", post_path(post), class: "btn btn-info form-control"%><br>
+        <div class="pt-3">
+          <%= link_to user_path(post.user), class: "text-dark" do %>
+            <%= attachment_image_tag post.user, :profile_image, fallback: "nophoto_thumbnail.png", size: "30x30" %>
+            <%= post.user.name %>
+          <small class="date"><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
