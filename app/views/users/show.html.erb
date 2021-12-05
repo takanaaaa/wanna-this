@@ -1,0 +1,25 @@
+<div class="card mb-3 mx-5">
+  <div class="card-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-1 d-flex align-items-center">
+          <%= attachment_image_tag(@user, :profile_image, fallback: "nophoto_thumbnail.png", class: "bd-placeholder-img card-img-top", size: "50x50") %>
+        </div>
+        <div class="col-8">
+          <h5 class="card-title pt-3"><%= @user.name %></h5>
+          <p class="card-text"><%= simple_format @user.profile %></p>
+        </div>
+        <div class="col-3 d-flex align-items-center">
+          <% if @user == current_user %>
+            <%= link_to "編集", edit_user_path(@user), class: "btn btn-info" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid py-5">
+  <div class="row", style="margin: 0 auto;">
+    <%= render "posts/index", posts: @posts %>
+  </div>
+</div>
