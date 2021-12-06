@@ -11,6 +11,7 @@
         <div class="col-sm-7 ">
           <h5 class="card-title pt-3"><%= simple_format @post.title %></h5>
           <p class="card-text"><%= simple_format @post.body %></p>
+          <small class="comment" id="comment-count">コメント数:<%= @post.post_comments.count %></small>
         </div>
       </div>
     </div>
@@ -18,34 +19,17 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-7">
-      <% @post.post_comments.each do |comment| %>
-      <div class="card p-3 m-3">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-3">
-              <%= attachment_image_tag comment.user, :profile_image, fallback: "nophoto_thumbnail.png", class: "bd-placeholder-img rounded-circle mr-3", size: "50x50" %>
-              <%= link_to comment.user.name, user_path(comment.user), class: "text-secondary" %>
-            </div>
-            <div class="col-7">
-              <%= simple_format comment.comment %>
-            </div>
-            <div class="col-sm-2">
-              <% if comment.user == current_user %>
-                <%= link_to "Delete", post_post_comment_path(post_id: @post,id: comment.id), method: :delete, class: "btn btn-outline-danger btn-sm"%>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
+    <div class="col-md-7" id="post-comment_<%= @post.id%>">
+      <%= render "post_comments/post-comment", post: @post, post_comment: @post_comment %>
     </div>
     <div class="col-md-5">
-      <%= form_with model:[@post, @post_comment], local:true do |f| %>
+      <%= form_with model:[@post, @post_comment], remote:true do |f| %>
         <div class="form-group">
           <%= f.text_area :comment, rows: '5',placeholder: "コメントをここに", class: "form-control" %>
         </div>
-        <%= f.submit "送信", class: "btn btn-dark" %>
+        <div class="form-group text-right">
+          <%= f.submit "送信", class: "btn btn-dark" %>
+        </div>
       <% end %>
     </div>
   </div>
