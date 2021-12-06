@@ -11,6 +11,7 @@
         <div class="col-sm-7 ">
           <h5 class="card-title pt-3"><%= simple_format @post.title %></h5>
           <p class="card-text"><%= simple_format @post.body %></p>
+          <small class="comment" id="comment-count">コメント数:<%= @post.post_comments.count %></small>
         </div>
       </div>
     </div>
@@ -26,7 +27,9 @@
         <div class="form-group">
           <%= f.text_area :comment, rows: '5',placeholder: "コメントをここに", class: "form-control" %>
         </div>
-        <%= f.submit "送信", class: "btn btn-dark" %>
+        <div class="form-group text-right">
+          <%= f.submit "送信", class: "btn btn-dark" %>
+        </div>
       <% end %>
     </div>
   </div>
