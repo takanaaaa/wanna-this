@@ -21,7 +21,8 @@
   font-family: 'Oswald', sans-serif;
 }
 
-#title-hidden {
+#title-hidden,
+#profile-text-hidden {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -40,4 +41,8 @@
   position: absolute;
   right: 10px;
   bottom: 10px;
+}
+
+.mypage-nav p + p {
+  margin-right: 10px;
 }
