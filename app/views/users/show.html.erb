@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-1 d-flex align-items-center">
-          <%= attachment_image_tag(@user, :profile_image, fallback: "nophoto_thumbnail.png", class: "bd-placeholder-img card-img-top", size: "50x50") %>
+          <%= attachment_image_tag(@user, :profile_image, class: "bd-placeholder-img card-img-top", size: "50x50") %>
         </div>
         <div class="col-8">
           <h5 class="card-title pt-3"><%= @user.name %></h5>
@@ -12,15 +12,20 @@
         <div class="col-3 d-flex align-items-center">
           <% if @user == current_user %>
             <%= link_to "編集", edit_user_path(@user), class: "btn btn-info" %>
+          <% else %>
+            <div id="follow-btn<%= @user.id %>">
+              <%= render "relationships/follow-btn", user: @user %>
+            </div>
           <% end %>
-
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="row">
+<div class="container px-5">
+  <div class="row mypage-nav">
+    <p><%= link_to "フォロー中", followings_path(@user), class: "text-secondary nav-link border-bottom" %></p>
+    <p><%= link_to "フォロワー", followers_path(@user), class: "text-secondary nav-link border-bottom" %></p>
     <p><%= link_to "保存した投稿", user_favorites_path(@user), class: "text-secondary nav-link border-bottom" %></p>
   </div>
 </div>

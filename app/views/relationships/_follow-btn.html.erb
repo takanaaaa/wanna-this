@@ -1,0 +1,5 @@
+  <% if current_user.following?(user) %>
+    <%= link_to "unFollow", unfollow_path(user), method: :post, remote:true, class: "btn btn-outline-dark" %>
+  <% else %>
+    <%= link_to "Follow", follow_path(user), method: :post, remote:true, class: "btn btn-info" %>
+  <% end %>
