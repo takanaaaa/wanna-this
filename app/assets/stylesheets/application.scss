@@ -37,7 +37,8 @@
 }
 
 .date,
-.comment {
+.comment,
+.far.fa-trash-alt {
   position: absolute;
   right: 10px;
   bottom: 10px;
@@ -46,3 +47,27 @@
 .mypage-nav p + p {
   margin-right: 10px;
 }
+
+.message-right,
+.message-left {
+  width: 50%;
+  padding: 0.5em 1em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.message-right {
+  margin: 0 0 15px auto;
+  text-align: end;
+  color: #fff;
+  background: #289497;
+}
+
+.message-left {
+  margin-bottom: 15px;
+  text-align: start;
+  color: #000;
+  background: #E0E0E0;
+  opacity: .6;
+}
+
