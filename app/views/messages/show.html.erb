@@ -1,0 +1,36 @@
+<div class="container">
+  <h5 class="py-3"><%= @user.name %>さんとのメッセージ</h5>
+  <div class="row">
+    <% if current_user.following?(@user) && @user.following?(current_user)%>
+      <div class="col-lg-7 py-3 d-flex align-items-center">
+        <% if @messages.present? %>
+          <div id="message" style="width: 100%;">
+            <% @messages.each do |message| %>
+              <% if message.user_id == current_user.id %>
+                <p id="user-message<%= message.id%>" class="p-2 message-right"><%= message.content %></p>
+
+              <% else %>
+                <p class="p-2 user-message message-left"><%= message.content %></p>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="text-secondary">メッセージがありません。</p>
+        <% end %>
+      </div>
+      <div class="col-lg-5">
+        <%= form_with model:@message, remote:true do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, rows: "5", placeholder: "メッセージをここに", class: "form-control" %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "送信", method: :post, class: "btn btn-dark" %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      フォロー待ちです
+    <% end %>
+  </div>
+</div>
