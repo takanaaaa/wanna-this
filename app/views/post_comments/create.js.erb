@@ -1,3 +1,4 @@
 $("textarea").val("");
 $("#comment-count").html("コメント数:<%= @post.post_comments.count %>")
-$("#post-comment_<%= @post.id%>").html("<%= j(render "post_comments/post-comment", post: @post, post_comment: @post_comment) %>");
+$("#post-comment_<%= @post.id%>").html("<%= j(render 'post_comments/post-comment', post: @post, post_comments: @post_comments) %>");
+
