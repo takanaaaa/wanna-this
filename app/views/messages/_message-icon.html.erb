@@ -1,0 +1,5 @@
+<% if current_user.following?(user) %>
+  <%= link_to message_path, class: "text-secondary nav-link border-bottom" do %>
+    <i class="far fa-comments"></i>
+  <% end %>
+<% end %>

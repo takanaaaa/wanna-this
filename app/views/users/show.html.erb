@@ -28,12 +28,8 @@
     <p><%= link_to "フォロー中", followings_path(@user), class: "text-secondary nav-link border-bottom" %></p>
     <p><%= link_to "フォロワー", followers_path(@user), class: "text-secondary nav-link border-bottom" %></p>
     <p><%= link_to "保存した投稿", user_favorites_path(@user), class: "text-secondary nav-link border-bottom" %></p>
-    <p>
-      <% if current_user.following?(@user) && @user.following?(current_user)%>
-        <%= link_to message_path, class: "text-secondary nav-link border-bottom" do %>
-          <i class="far fa-comments"></i>
-        <% end %>
-      <% end %>
+    <p id="message-icon">
+      <%= render "messages/message-icon", user: @user %>
     </p>
   </div>
 </div>
