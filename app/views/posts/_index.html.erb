@@ -5,6 +5,17 @@
         <%= render "favorites/favorite-btn", post: post %>
       </div>
       <%= attachment_image_tag post, :image, :fill, 300, 300, fallback: "nophoto_thumbnail.png", class: "bd-placeholder-img p-2" %>
+      <div>
+        <% if post.tags.present? %>
+          <% post.tags.each do |tag| %>
+            <button type="button" class="btn btn-light mx-1" data-container="body" style="font-size: 5px;">
+              <i id="tag" class="fas fa-tag" >
+                <%= link_to tag.tag_name, tag_post_path(tag), class: "text-dark" %>
+              </i>
+            </button>
+          <% end %>
+        <% end %>
+      </div>
       <div class="card-body">
         <h5 class="card-title", id="title-hidden"><%= post.title %></h5>
         <p class="card-text", id="text-hidden"><%= post.body %></p>
@@ -13,7 +24,7 @@
           <%= link_to user_path(post.user), class: "text-dark" do %>
             <%= attachment_image_tag post.user, :profile_image, fallback: "nophoto_thumbnail.png", size: "30x30" %>
             <%= post.user.name %>
-          <small class="date"><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+            <small class="date"><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></small>
           <% end %>
         </div>
       </div>
