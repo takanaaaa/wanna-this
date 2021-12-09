@@ -45,6 +45,20 @@
   bottom: 10px;
 }
 
+#new-post {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  z-index: 1;
+  font-size: 45px;
+  border: 2px solid;
+  padding: 10px;
+  border-radius: 50%;
+  color: #564148;
+  background: #fff;
+  opacity: .8;
+}
+
 .mypage-nav p + p {
   margin-right: 10px;
 }
