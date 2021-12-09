@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <h5 class="my-5">#<%= @tag.tag_name %></h5>
+  <%= form_tag%>
+  <div class="row", style="margin: 0 auto;">
+    <%= render "posts/index", posts: @posts %>
+  </div>
+</div>

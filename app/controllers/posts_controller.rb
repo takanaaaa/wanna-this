@@ -49,6 +49,11 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def search
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.all
+  end
+
   private
   def post_params
     params.require(:post).permit(:title, :body, :image)

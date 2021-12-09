@@ -9,8 +9,8 @@
         <% if post.tags.present? %>
           <% post.tags.each do |tag| %>
             <button type="button" class="btn btn-light mx-1" data-container="body" style="font-size: 5px;">
-              <i id="tag" class="fas fa-tag text-dark" >
-                <%= tag.tag_name %>
+              <i id="tag" class="fas fa-tag" >
+                <%= link_to tag.tag_name, tag_post_path(tag), class: "text-dark" %>
               </i>
             </button>
           <% end %>
