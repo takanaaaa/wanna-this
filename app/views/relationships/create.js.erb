@@ -1,1 +1,2 @@
 $("#follow-btn<%= @user.id %>").html("<%= j(render "relationships/follow-btn", user: @user) %>");
+$("#message-icon").html("<%= j(render "messages/message-icon", user: @user) %>");
