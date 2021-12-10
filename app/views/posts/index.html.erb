@@ -1,6 +1,8 @@
 <div class="container-fluid">
   <h5 class="my-5">投稿一覧</h5>
-  <%= form_tag%>
+  <%= link_to new_post_path do %>
+    <i id="new-post" class="fas fa-plus"></i>
+  <% end %>
   <div class="row", style="margin: 0 auto;">
     <%= render "index", posts: @posts %>
   </div>

@@ -5,25 +5,21 @@
         <div class="col-1" id="favorite_<%= @post.id%>">
           <%= render "favorites/favorite-btn", post: @post %>
         </div>
-        <div class="col-sm-4 text-center">
+        <div class="col-sm-3 text-center">
           <%= attachment_image_tag(@post, :image, :fill, 300, 300, fallback: "nophoto_thumbnail.png", class: "bd-placeholder-img card-img-top") %>
         </div>
-        <div class="col-sm-7 ">
+        <div class="col-sm-7">
           <h5 class="card-title pt-3"><%= simple_format @post.title %></h5>
           <p class="card-text"><%= simple_format @post.body %></p>
-          <div class="btn-toolbar">
-            <div class="btn-group">
-              <% if @post.tags.present? %>
-                <% @post.tags.each do |tag| %>
-                  <button type="button" class="btn btn-light mx-1" data-container="body" style="font-size: 5px;">
-                    <i class="fas fa-tag text-dark" >
-                      <%= tag.tag_name %>
-                    </i>
-                  </button>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
+          <%= render "posts/tag", post: @post %>
+        </div>
+        <div class="col-sm-1">
+          <%= link_to edit_post_path(@post) do %>
+            <i class="far fa-edit text-secondary mr-3 my-2"></i>
+          <% end %>
+          <%= link_to post_path(@post), method: :delete do %>
+            <i class="far fa-trash-alt text-secondary"></i>
+          <% end %>
         </div>
         <small class="comment" id="comment-count">コメント数:<%= @post.post_comments.count %></small>
       </div>
@@ -33,7 +29,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7" id="post-comment_<%= @post.id%>">
-      <%= render "post_comments/post-comment", post: @post, post_comment: @post_comment %>
+      <%= render "post_comments/post-comment", post: @post, post_comments: @post_comments %>
     </div>
     <div class="col-md-5">
       <%= form_with model:[@post, @post_comment], remote:true do |f| %>

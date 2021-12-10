@@ -6,12 +6,14 @@ class PostCommentsController < ApplicationController
     @post_comment.user_id = current_user.id
     @post_comment.save
     @post_comment = PostComment.new
+    @post_comments = @post.post_comments.order(created_at: :desc)
   end
 
   def destroy
     PostComment.find_by(id: params[:id]).destroy
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.new
+    @post_comments = @post.post_comments.order(created_at: :desc)
   end
 
   private

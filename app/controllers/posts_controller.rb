@@ -9,8 +9,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @tag_list = params[:post][:tag_name].split(nil)
-    p @tag_list
-    if @post.save
+    if @post.save!
       @post.save_tag(@tag_list)
       redirect_to post_path(@post)
     else
@@ -21,7 +20,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    @user = User.find(params[:id])
+    @post_comments = @post.post_comments.order(created_at: :desc)
   end
 
   def index
