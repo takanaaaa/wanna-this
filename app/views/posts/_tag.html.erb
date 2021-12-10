@@ -2,7 +2,7 @@
   <% post.tags.each do |tag| %>
     <button type="button" class="btn btn-light mx-1 mb-1" data-container="body" style="font-size: 5px;">
       <i class="fas fa-tag text-dark" >
-        <%= tag.tag_name %>
+        <%= link_to tag.tag_name, tag_post_path(tag), class: "text-dark" %>
       </i>
     </button>
   <% end %>
