@@ -5,11 +5,11 @@
         <%= render "favorites/favorite-btn", post: post %>
       </div>
       <%= attachment_image_tag post, :image, :fill, 300, 300, fallback: "nophoto_thumbnail.png", class: "bd-placeholder-img p-2" %>
-      <div>
+      <div id="tag">
         <% if post.tags.present? %>
           <% post.tags.each do |tag| %>
             <button type="button" class="btn btn-light mx-1" data-container="body" style="font-size: 5px;">
-              <i id="tag" class="fas fa-tag" >
+              <i class="fas fa-tag" >
                 <%= link_to tag.tag_name, tag_post_path(tag), class: "text-dark" %>
               </i>
             </button>
