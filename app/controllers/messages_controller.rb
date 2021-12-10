@@ -14,10 +14,21 @@ class MessagesController < ApplicationController
     end
     @messages = @room.messages
     @message = Message.new(room_id: @room.id)
+    @newmessage = @room.messages.last(1)
+    p @newmessage
   end
 
   def create
     @message = current_user.messages.create(message_params)
+    room = @message.room
+    @newmessage = room.messages.last(1)
+  end
+
+  def destroy
+    @message = Message.find(params[:id])
+    room =@message.room
+    @message.destroy
+    @newmessage = room.messages.last(1)
   end
 
   private

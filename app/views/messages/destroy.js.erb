@@ -1,0 +1,2 @@
+$("#user-message<%= @message.id%>").remove();
+$("#delete-btn").html("<%= j(render 'delete-btn', newmessage: @newmessage) %>");

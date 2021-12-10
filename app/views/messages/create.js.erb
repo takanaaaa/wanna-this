@@ -1,3 +1,4 @@
 $("textarea").val("");
 $("#delete-icon<%= @message.id%>").append(".far.fa-trash-alt.text-danger<%= @message.id%>");
 $("#message").append("<p id='user-message<%= @message.id%>' class='p-2 message-right'><%= @message.content %></p>");
+$("#delete-btn").html("<%= j(render "delete-btn", newmessage: @newmessage) %>")
