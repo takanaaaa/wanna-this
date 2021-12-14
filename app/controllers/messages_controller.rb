@@ -15,20 +15,25 @@ class MessagesController < ApplicationController
     @messages = @room.messages
     @message = Message.new(room_id: @room.id)
     @newmessage = @room.messages.last(1)
-    p @newmessage
   end
 
   def create
     @message = current_user.messages.create(message_params)
     room = @message.room
     @newmessage = room.messages.last(1)
+    if room.messages.count == 1
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy
     @message = Message.find(params[:id])
-    room =@message.room
+    room = @message.room
     @message.destroy
     @newmessage = room.messages.last(1)
+    if @newmessage.blank?
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private
