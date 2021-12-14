@@ -21,14 +21,26 @@
         <% end %>
       </div>
       <div class="col-lg-5">
-        <%= form_with model:@message, remote:true do |f| %>
-          <div class="form-group">
-            <%= f.text_area :content, rows: "5", placeholder: "メッセージをここに", class: "form-control" %>
-            <%= f.hidden_field :room_id, value: @room.id %>
-          </div>
-          <div class="form-group">
-            <%= f.submit "送信", method: :post, class: "btn btn-dark" %>
-          </div>
+        <% if @messages.present? %>
+          <%= form_with model:@message, remote:true do |f| %>
+            <div class="form-group">
+              <%= f.text_area :content, rows: "5", placeholder: "メッセージをここに", class: "form-control" %>
+              <%= f.hidden_field :room_id, value: @room.id %>
+            </div>
+            <div class="form-group">
+              <%= f.submit "送信", method: :post, class: "btn btn-dark" %>
+            </div>
+          <% end %>
+        <% else %>
+          <%= form_with model:@message, local:true do |f| %>
+            <div class="form-group">
+              <%= f.text_area :content, rows: "5", placeholder: "メッセージをここに", class: "form-control" %>
+              <%= f.hidden_field :room_id, value: @room.id %>
+            </div>
+            <div class="form-group">
+              <%= f.submit "送信", method: :post, class: "btn btn-dark" %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     <% else %>
